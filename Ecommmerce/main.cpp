@@ -49,7 +49,7 @@ std::string getLineInput(const std::string& prompt, bool allowEmpty = false) {
 }
 
 
-// --- User related actions --- (Copied from previous response for completeness)
+// --- User related actions --- 
 void handleRegister(UserManager& um) {
     std::cout << "\n--- User Registration ---" << std::endl;
     std::string uname = getLineInput("Enter username: ");
@@ -69,7 +69,7 @@ void handleRegister(UserManager& um) {
 
     std::string typeChoice;
     std::cout << "Register as (1) Consumer or (2) Merchant: ";
-    std::getline(std::cin, typeChoice); // Use getline for safety after other inputs
+    std::getline(std::cin, typeChoice);
 
     std::string accountType;
     if (typeChoice == "1") accountType = "Consumer";
@@ -108,7 +108,7 @@ void handleLogin(UserManager& um, User*& currentUser) {
 void handleLogout(User*& currentUser, UserManager& um) {
     if (currentUser) {
         std::cout << "Logging out " << currentUser->getUsername() << "." << std::endl;
-        um.persistChanges(); // Persist any user data changes (like balance) before logout
+        um.persistChanges();
         currentUser = nullptr;
     }
     else {
@@ -138,7 +138,7 @@ void handleChangePassword(UserManager& um, User* currentUser) {
     } while (pwd1 != pwd2);
 
     currentUser->setPassword(pwd1);
-    um.persistChanges(); // Save updated user data
+    um.persistChanges();
     std::cout << "Password changed successfully." << std::endl;
 }
 
@@ -151,6 +151,12 @@ void handleBalanceManagement(UserManager& um, User* currentUser) {
     std::cout << "Current balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
     std::cout << "1. Recharge balance" << std::endl;
     std::cout << "2. View balance (already shown)" << std::endl;
+    // "Consume" part for Task 1 is typically demonstrated by spending.
+    // Since direct purchase is removed for Task 1 as per request,
+    // a generic withdraw option can represent "consume" if needed,
+    // or just recharge and view are sufficient for balance management.
+    // For simplicity, let's keep it to recharge and view.
+    // If "consume" needs to be explicitly shown, a "Withdraw" option could be added.
     std::cout << "0. Back" << std::endl;
 
     std::string choiceStr = getLineInput("Your choice: ");
@@ -162,7 +168,6 @@ void handleBalanceManagement(UserManager& um, User* currentUser) {
         std::cout << "Invalid input." << std::endl;
         return;
     }
-
 
     if (choice == 1) {
         double amount = getValidatedInput<double>("Enter amount to recharge: $");
@@ -235,77 +240,12 @@ void handleSearchProducts(ProductManager& pm) {
 }
 
 // --- Consumer-Specific Actions ---
+// REMOVED: handlePurchaseProduct function as per request for Task 1 simplification
+/*
 void handlePurchaseProduct(UserManager& um, ProductManager& pm, User* consumerUser) {
-    if (!consumerUser || consumerUser->getUserType() != "Consumer") {
-        std::cout << "Error: Must be logged in as a Consumer." << std::endl;
-        return;
-    }
-    Consumer* consumer = static_cast<Consumer*>(consumerUser);
-
-    std::cout << "\n--- Purchase Product ---" << std::endl;
-    handleDisplayAllProducts(pm); // Show available products
-
-    std::string productID = getLineInput("Enter ID of the product to purchase (or 0 to cancel): ");
-    if (productID == "0") return;
-
-    Product* product = pm.findProductByID(productID);
-    if (!product) {
-        std::cout << "Product ID not found." << std::endl;
-        return;
-    }
-
-    if (product->getStock() <= 0) {
-        std::cout << "Sorry, this product is out of stock." << std::endl;
-        return;
-    }
-
-    int quantity = getValidatedInput<int>("Enter quantity to purchase: ");
-    if (quantity <= 0) {
-        std::cout << "Quantity must be positive." << std::endl;
-        return;
-    }
-    if (quantity > product->getStock()) {
-        std::cout << "Not enough stock. Available: " << product->getStock() << std::endl;
-        return;
-    }
-
-    double totalCost = product->getPrice() * quantity;
-    std::cout << "Product: " << product->getName() << ", Quantity: " << quantity
-        << ", Total Cost: $" << std::fixed << std::setprecision(2) << totalCost << std::endl;
-
-    if (consumer->getBalance() < totalCost) {
-        std::cout << "Insufficient balance. Your balance: $" << consumer->getBalance() << std::endl;
-        return;
-    }
-
-    std::string confirm = getLineInput("Confirm purchase? (y/n): ");
-    if (confirm == "y" || confirm == "Y") {
-        if (consumer->withdraw(totalCost)) {
-            product->setStock(product->getStock() - quantity);
-
-            // Find merchant and credit them
-            User* merchantUser = um.findUser(product->getOwnerMerchantUsername());
-            if (merchantUser && merchantUser->getUserType() == "Merchant") {
-                merchantUser->deposit(totalCost); // Merchant gets the full sale price
-            }
-            else {
-                std::cout << "Warning: Merchant account " << product->getOwnerMerchantUsername()
-                    << " not found or not a merchant. Funds not transferred to seller." << std::endl;
-            }
-
-            um.persistChanges(); // Save user balance changes
-            pm.persistChanges(); // Save product stock changes
-            std::cout << "Purchase successful! Your new balance: $" << std::fixed << std::setprecision(2) << consumer->getBalance() << std::endl;
-        }
-        else {
-            std::cout << "Purchase failed due to an unexpected balance issue." << std::endl; // Should have been caught
-        }
-    }
-    else {
-        std::cout << "Purchase cancelled." << std::endl;
-    }
+    // ... entire function body removed ...
 }
-
+*/
 
 // --- Merchant-Specific Actions ---
 void handleAddProduct(ProductManager& pm, User* merchantUser) {
@@ -330,28 +270,26 @@ void handleAddProduct(ProductManager& pm, User* merchantUser) {
     }
 
     std::string productTypeChoice;
-    std::string productType;
+    std::string productType; // This will be "Book", "Food", or "Clothing" for class instantiation
     while (true) {
-        std::cout << "Select product category:\n1. Book\n2. Food\n3. Clothing\nYour choice: ";
+        std::cout << "Select product category for instantiation:\n1. Book\n2. Food\n3. Clothing\nYour choice: ";
         std::getline(std::cin, productTypeChoice);
         if (productTypeChoice == "1") { productType = "Book"; break; }
         if (productTypeChoice == "2") { productType = "Food"; break; }
         if (productTypeChoice == "3") { productType = "Clothing"; break; }
-        std::cout << "Invalid choice. Please select 1, 2, or 3." << std::endl;
+        std::cout << "Invalid choice. Please select 1, 2, or 3 for the base product class." << std::endl;
     }
-    // The requirement "商家可以添加商品类型" (Merchants can add product types)
-    // is interpreted as they can input a string for the product's type attribute.
-    // For instantiation, we are limited to Book, Food, Clothing classes.
-    // For now, we will use the category as the productType string.
-    // A more advanced version might allow a custom string here that gets stored,
-    // while still instantiating one of the base types.
-    // For this project, `productType` string will be "Book", "Food", or "Clothing".
+
+    // Optional: Allow merchant to specify a more detailed type string if desired,
+    // but the C++ class will be one of the above.
+    // For Task 1, productType being "Book", "Food", "Clothing" is sufficient.
 
     if (pm.addProduct(name, description, originalPrice, stock, merchant->getUsername(), productType)) {
         std::cout << "Product '" << name << "' added successfully." << std::endl;
+        // Discount application will be handled within pm.addProduct if a rule exists
     }
     else {
-        std::cout << "Failed to add product. Ensure category is valid if system restricts." << std::endl;
+        std::cout << "Failed to add product." << std::endl;
     }
 }
 
@@ -382,7 +320,7 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     std::cout << "\nManaging Product: " << product->getName() << " (ID: " << product->getID() << ")" << std::endl;
     std::cout << "1. Update Price (Original & Sale)" << std::endl;
     std::cout << "2. Update Stock" << std::endl;
-    std::cout << "3. Set Discount (Update Sale Price)" << std::endl;
+    std::cout << "3. Set Discount (Update Sale Price for this specific product)" << std::endl;
     std::cout << "4. Remove Product" << std::endl;
     std::cout << "5. Update Description" << std::endl;
     std::cout << "6. Update Name" << std::endl;
@@ -406,7 +344,7 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
             newOrigPrice = getValidatedInput<double>("Enter new original price: $");
             if (newOrigPrice < 0) std::cout << "Price cannot be negative.\n";
         }
-        product->setOriginalPrice(newOrigPrice); // This might also adjust sale price
+        product->setOriginalPrice(newOrigPrice);
         double newSalePrice = -1.0;
         while (newSalePrice < 0 || newSalePrice > newOrigPrice) {
             newSalePrice = getValidatedInput<double>("Enter new sale price (cannot exceed original): $");
@@ -427,15 +365,15 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
         changed = true;
         break;
     }
-    case 3: { // Set Discount
+    case 3: {
         double discountPercent = -1.0;
         while (discountPercent < 0 || discountPercent > 100) {
-            discountPercent = getValidatedInput<double>("Enter discount percentage (e.g., 10 for 10% off): ");
+            discountPercent = getValidatedInput<double>("Enter discount percentage for this product (e.g., 10 for 10% off): ");
             if (discountPercent < 0 || discountPercent > 100) std::cout << "Discount must be between 0 and 100.\n";
         }
         double newSalePrice = product->getOriginalPrice() * (1.0 - (discountPercent / 100.0));
-        product->setCurrentSalePrice(newSalePrice); // setCurrentSalePrice handles validation
-        std::cout << "New sale price set to: $" << std::fixed << std::setprecision(2) << product->getCurrentSalePrice() << std::endl;
+        product->setCurrentSalePrice(newSalePrice);
+        std::cout << "New sale price for this product set to: $" << std::fixed << std::setprecision(2) << product->getCurrentSalePrice() << std::endl;
         changed = true;
         break;
     }
@@ -444,13 +382,11 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
         if (confirm == "y" || confirm == "Y") {
             if (pm.removeProduct(product->getID(), merchant->getUsername())) {
                 std::cout << "Product removed." << std::endl;
-                // product pointer is now dangling, don't use it further
             }
             else {
-                std::cout << "Failed to remove product." << std::endl; // Should be caught by earlier checks
+                std::cout << "Failed to remove product." << std::endl;
             }
-            // No 'changed = true' here as removeProduct saves.
-            return; // Return to avoid further ops on deleted product
+            return;
         }
         break;
     }
@@ -474,7 +410,7 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     }
 
     if (changed) {
-        pm.updateProduct(product); // This calls saveProductsToFile
+        pm.updateProduct(product);
         std::cout << "Product details updated." << std::endl;
     }
 }
@@ -486,9 +422,8 @@ void handleDiscountCategory(ProductManager& pm, User* merchantUser) {
     }
     Merchant* merchant = static_cast<Merchant*>(merchantUser);
 
-    std::cout << "\n--- Discount Products by Category ---" << std::endl;
+    std::cout << "\n--- Discount Products by Category (for your products) ---" << std::endl;
 
-    // Get available types from merchant's products
     std::vector<Product*> myProducts = pm.getProductsByMerchant(merchant->getUsername());
     if (myProducts.empty()) {
         std::cout << "You have no products to discount." << std::endl;
@@ -499,57 +434,52 @@ void handleDiscountCategory(ProductManager& pm, User* merchantUser) {
     for (const auto* p : myProducts) {
         myTypesSet.insert(p->getProductType());
     }
-    if (myTypesSet.empty()) {
-        std::cout << "No product categories found for your products." << std::endl;
+    if (myTypesSet.empty() && pm.getAvailableProductTypes().empty()) { // Check both merchant's types and all platform types
+        std::cout << "No product categories found for your products or on the platform." << std::endl;
         return;
     }
 
-    std::cout << "Your product categories: ";
+    std::cout << "Your current product categories: ";
+    if (myTypesSet.empty()) std::cout << "None. ";
     for (const auto& type : myTypesSet) {
+        std::cout << type << " ";
+    }
+    std::cout << "\nAll platform categories: ";
+    std::vector<std::string> allTypes = pm.getAvailableProductTypes();
+    if (allTypes.empty()) std::cout << "None.";
+    for (const auto& type : allTypes) {
         std::cout << type << " ";
     }
     std::cout << std::endl;
 
-    std::string categoryToDiscount = getLineInput("Enter product category (e.g., Book, Food, Clothing) to discount: ");
-    // Validate if this category exists for this merchant
-    bool categoryExists = false;
-    for (const auto* p : myProducts) {
-        if (p->getProductType() == categoryToDiscount) {
-            categoryExists = true;
+
+    std::string categoryToDiscount = getLineInput("Enter product category (e.g., Book, Food, Clothing) to apply/update discount for: ");
+    // Validate category string (optional, could allow any string for future types)
+    // For now, we expect one of the known types for simplicity, but ProductManager handles any string.
+    bool platformHasCategory = false;
+    for (const auto& type : allTypes) {
+        if (type == categoryToDiscount) {
+            platformHasCategory = true;
             break;
         }
     }
-    if (!categoryExists) {
-        std::cout << "You don't have any products in the category: " << categoryToDiscount << std::endl;
-        return;
+    // Check if the chosen category is one of the basic ones if you want to be strict.
+    if (categoryToDiscount != "Book" && categoryToDiscount != "Food" && categoryToDiscount != "Clothing" && !platformHasCategory) {
+        std::cout << "Warning: '" << categoryToDiscount << "' is not a standard or existing category. "
+            << "You can still set a discount rule for it if you plan to add such products." << std::endl;
     }
 
 
     double discountPercent = -1.0;
     while (discountPercent < 0 || discountPercent > 100) {
-        discountPercent = getValidatedInput<double>("Enter discount percentage (0-100): ");
+        discountPercent = getValidatedInput<double>("Enter discount percentage (0-100, 0 to remove discount): ");
         if (discountPercent < 0 || discountPercent > 100) std::cout << "Discount must be between 0 and 100.\n";
     }
 
-
-    int count = 0;
-    for (Product* p : myProducts) {
-        if (p->getProductType() == categoryToDiscount) {
-            double newSalePrice = p->getOriginalPrice() * (1.0 - (discountPercent / 100.0));
-            p->setCurrentSalePrice(newSalePrice);
-            count++;
-        }
-    }
-
-    if (count > 0) {
-        pm.persistChanges(); // Save all product changes
-        std::cout << count << " products in category '" << categoryToDiscount
-            << "' have been discounted by " << discountPercent << "%." << std::endl;
-    }
-    else {
-        // This case should be caught by 'categoryExists' check, but as a fallback:
-        std::cout << "No products found for you in category '" << categoryToDiscount << "'." << std::endl;
-    }
+    // Use the new ProductManager method
+    pm.applyCategoryDiscount(merchant->getUsername(), categoryToDiscount, discountPercent);
+    // The pm.applyCategoryDiscount method will print messages and save changes.
+    // No need for pm.persistChanges() here as applyCategoryDiscount calls saveProductsToFile.
 }
 
 
@@ -576,7 +506,7 @@ void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
             std::cout << "4. Login" << std::endl;
         }
         else {
-            std::cout << "3. My Account Options" << std::endl; // Leads to user-specific menu
+            std::cout << "3. My Account Options" << std::endl;
             std::cout << "4. Logout" << std::endl;
         }
         std::cout << "0. Exit" << std::endl;
@@ -587,9 +517,8 @@ void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
             choice = std::stoi(choiceStr);
         }
         catch (const std::exception& e) {
-            choice = -1; // Invalid input
+            choice = -1;
         }
-
 
         switch (choice) {
         case 1: handleDisplayAllProducts(pm); break;
@@ -611,8 +540,8 @@ void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
             break;
         case 0:
             std::cout << "Exiting platform. Goodbye!" << std::endl;
-            if (currentUser) um.persistChanges(); // Ensure user data is saved if logged in
-            pm.persistChanges(); // Ensure product data is saved
+            if (currentUser) um.persistChanges();
+            pm.persistChanges();
             return;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
@@ -629,10 +558,10 @@ void showConsumerMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
         std::cout << "Balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
         std::cout << "1. View All Products" << std::endl;
         std::cout << "2. Search Products" << std::endl;
-        std::cout << "3. Purchase Product" << std::endl;
-        std::cout << "4. Manage Balance" << std::endl;
-        std::cout << "5. Change Password" << std::endl;
-        std::cout << "0. Back to Main Menu (Logout)" << std::endl; // Changed to logout for simplicity
+        // std::cout << "3. Purchase Product" << std::endl; // REMOVED
+        std::cout << "3. Manage Balance" << std::endl;     // Re-numbered
+        std::cout << "4. Change Password" << std::endl;    // Re-numbered
+        std::cout << "0. Back to Main Menu (Logout)" << std::endl;
 
         choiceStr = getLineInput("Your choice: ");
         try {
@@ -645,17 +574,17 @@ void showConsumerMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
         switch (choice) {
         case 1: handleDisplayAllProducts(pm); break;
         case 2: handleSearchProducts(pm); break;
-        case 3: handlePurchaseProduct(um, pm, currentUser); break;
-        case 4: handleBalanceManagement(um, currentUser); break;
-        case 5: handleChangePassword(um, currentUser); break;
+            // case 3: handlePurchaseProduct(um, pm, currentUser); break; // REMOVED
+        case 3: handleBalanceManagement(um, currentUser); break; // Now case 3
+        case 4: handleChangePassword(um, currentUser); break;    // Now case 4
         case 0:
-            handleLogout(currentUser, um); // Effectively logs out and will return to main menu's loop
+            handleLogout(currentUser, um);
             return;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
         }
     }
-    if (!currentUser) { // If logout happened, ensure we exit this menu loop
+    if (!currentUser) {
         return;
     }
 }
@@ -668,13 +597,13 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
         std::cout << "\n--- Merchant Menu (" << currentUser->getUsername() << ") ---" << std::endl;
         std::cout << "Balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
         std::cout << "1. Add New Product" << std::endl;
-        std::cout << "2. Manage My Products" << std::endl; // View, Update, Remove
-        std::cout << "3. Discount Products by Category" << std::endl;
+        std::cout << "2. Manage My Products" << std::endl;
+        std::cout << "3. Set/Update Discount by Category (for my products)" << std::endl; // Clarified name
         std::cout << "4. View All Platform Products" << std::endl;
         std::cout << "5. Search Platform Products" << std::endl;
         std::cout << "6. Manage Balance" << std::endl;
         std::cout << "7. Change Password" << std::endl;
-        std::cout << "0. Back to Main Menu (Logout)" << std::endl; // Changed to logout
+        std::cout << "0. Back to Main Menu (Logout)" << std::endl;
 
         choiceStr = getLineInput("Your choice: ");
         try {
@@ -693,13 +622,13 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
         case 6: handleBalanceManagement(um, currentUser); break;
         case 7: handleChangePassword(um, currentUser); break;
         case 0:
-            handleLogout(currentUser, um); // Logs out and returns to main menu's loop
+            handleLogout(currentUser, um);
             return;
         default:
             std::cout << "Invalid choice. Please try again." << std::endl;
         }
     }
-    if (!currentUser) { // If logout happened, ensure we exit this menu loop
+    if (!currentUser) {
         return;
     }
 }
@@ -707,18 +636,21 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
 
 // --- Main Function ---
 int main() {
-    // Create managers: They will load data from files in their constructors
     UserManager userManager;
     ProductManager productManager;
 
-    User* currentUser = nullptr; // No user logged in initially
+    User* currentUser = nullptr;
 
     showMainMenu(userManager, productManager, currentUser);
 
-    // Destructors of userManager and productManager will handle cleanup
-    // (deleting dynamically allocated User and Product objects)
-    // and optionally save data if not done explicitly elsewhere.
     // PersistChanges is called at exit from main menu and on logout.
-
     return 0;
 }
+
+// Make sure the split function is defined. If it's in UserManager.cpp and not in a common header,
+// you might need to define it again or move it to a utility file and include it.
+// For simplicity, if it's only in UserManager.cpp, you might need to redeclare it here or move its definition.
+// Let's assume it's available (e.g., if UserManager.cpp is compiled and linked, its 'split' is available if not static).
+// To be safe, one could define it in a separate util.h and util.cpp or make it a static helper in main.
+// Given the project structure, having 'extern std::vector<std::string> split(...);' in ProductManager.cpp
+// and relying on UserManager.cpp providing the definition during linking is a common approach.

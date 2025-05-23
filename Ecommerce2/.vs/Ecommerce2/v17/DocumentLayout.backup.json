@@ -1,0 +1,83 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ProductManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 403,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ProductManager.h",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h",
+              "RelativeDocumentMoniker": "ProductManager.h",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h",
+              "RelativeToolTip": "ProductManager.h",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T10:15:01.052Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ProductManager.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp",
+              "RelativeDocumentMoniker": "ProductManager.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp*",
+              "RelativeToolTip": "ProductManager.cpp*",
+              "ViewState": "AgIAAMwAAAAAAAAAAAAkwCYBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T09:42:10.068Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{68487888-204a-11d3-87eb-00c04f7971a5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "main.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp",
+              "RelativeDocumentMoniker": "main.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp",
+              "RelativeToolTip": "main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T09:15:08.011Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

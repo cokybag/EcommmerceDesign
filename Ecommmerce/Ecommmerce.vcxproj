@@ -24,7 +24,7 @@
     <ProjectGuid>{c9cb7c43-52aa-4f16-8e34-01ac3134675c}</ProjectGuid>
     <RootNamespace>Ecommmerce</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
-    <ProjectName>Ecommmerce01</ProjectName>
+    <ProjectName>Ecommmerce</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

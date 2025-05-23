@@ -5,6 +5,14 @@
     {
       "AbsoluteMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Product.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|solutionrelative:Product.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Products.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{C9CB7C43-52AA-4F16-8E34-01AC3134675C}|Ecommmerce.vcxproj|solutionrelative:Products.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +22,34 @@
       "DocumentGroups": [
         {
           "DockedHeight": 403,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 5,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Products.h",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Products.h",
+              "RelativeDocumentMoniker": "Products.h",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Products.h",
+              "RelativeToolTip": "Products.h",
+              "ViewState": "AgIAADMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-05-23T08:31:05.95Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Product.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Product.cpp",
+              "RelativeDocumentMoniker": "Product.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\Product.cpp",
+              "RelativeToolTip": "Product.cpp",
+              "ViewState": "AgIAAGAAAAAAAAAAAAAAAHEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-23T08:30:36.971Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -36,7 +70,7 @@
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommmerce\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAAAAUAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-23T07:16:29.908Z",
               "EditorCaption": ""

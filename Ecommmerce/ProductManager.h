@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 #include <algorithm> // For std::sort, std::remove_if
-#include <map> // For product types
+#include <map>       // For product types and category discounts
 
 class ProductManager {
 private:
@@ -13,10 +13,13 @@ private:
     const std::string filename = "products.txt";
     int nextProductID; // To generate unique IDs
 
+    // Stores discount percentage for a category by a specific merchant
+    // Key: merchantUsername, Value: (map of Key: categoryType, Value: discountPercent)
+    std::map<std::string, std::map<std::string, double>> activeCategoryDiscounts;
+
     void loadProductsFromFile();
     void saveProductsToFile() const;
     std::string generateNewProductID();
-
 
 public:
     ProductManager();
@@ -35,10 +38,11 @@ public:
 
     void persistChanges(); // Explicitly save to file
 
-    // For requirement: merchants can add product types implicitly by adding products
-    // No explicit "add product type" function needed for products themselves,
-    // but we might want a way to list available types for searching.
     std::vector<std::string> getAvailableProductTypes() const;
+
+    // New methods for managing category-wide discounts
+    void applyCategoryDiscount(const std::string& merchantUsername, const std::string& categoryType, double discountPercentage);
+    double getActiveCategoryDiscount(const std::string& merchantUsername, const std::string& categoryType) const;
 };
 
 #endif // PRODUCTMANAGER_H

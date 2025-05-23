@@ -1,0 +1,3 @@
+coky,123456,0,Merchant
+alan,123456,0,Merchant
+smith,123456,200,Consumer
