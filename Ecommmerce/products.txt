@@ -1,0 +1,3 @@
+P1,»‚º–‚…,√¿Œ∂∫√≥‘,1,0.9,50,coky,Food
+P2,±˘º§¡Ë,1.5,1.5,1.35,50,coky,Food
+P3,apple,tasty,5,5,500,coky,Food
