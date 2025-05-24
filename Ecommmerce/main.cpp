@@ -1,5 +1,4 @@
-// (Previous includes and helper functions from the first part of main.cpp)
-// ...
+// (main.cpp 第一部分中之前的包含文件和辅助函数)
 #include <iostream>
 #include <string>
 #include <vector>
@@ -10,14 +9,14 @@
 
 #include "UserManager.h"
 #include "ProductManager.h"
-// User.h and Product.h are included via UserManager.h and ProductManager.h
+// User.h 和 Product.h 通过 UserManager.h 和 ProductManager.h 包含进来
 
-// Forward declarations for menu functions
+// 菜单函数的前向声明
 void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser);
 void showConsumerMenu(UserManager& um, ProductManager& pm, User*& currentUser);
 void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser);
 
-// Helper for robust input
+// 健壮输入辅助函数
 template <typename T>
 T getValidatedInput(const std::string& prompt) {
     T value;
@@ -25,11 +24,11 @@ T getValidatedInput(const std::string& prompt) {
         std::cout << prompt;
         std::cin >> value;
         if (std::cin.good()) {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear buffer
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // 清空缓冲区
             return value;
         }
         else {
-            std::cout << "Invalid input. Please try again." << std::endl;
+            std::cout << "输入无效，请重试。" << std::endl;
             std::cin.clear();
             std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
         }
@@ -44,158 +43,158 @@ std::string getLineInput(const std::string& prompt, bool allowEmpty = false) {
         if (allowEmpty || !value.empty()) {
             return value;
         }
-        std::cout << "Input cannot be empty. Please try again." << std::endl;
+        std::cout << "输入不能为空，请重试。" << std::endl;
     }
 }
 
 
-// --- User related actions --- 
+// --- 用户相关操作 --- 
 void handleRegister(UserManager& um) {
-    std::cout << "\n--- User Registration ---" << std::endl;
-    std::string uname = getLineInput("Enter username: ");
+    std::cout << "\n--- 用户注册 ---" << std::endl;
+    std::string uname = getLineInput("请输入用户名：");
     if (um.isUsernameTaken(uname)) {
-        std::cout << "Username already taken. Please try another." << std::endl;
+        std::cout << "用户名已被占用，请尝试其他用户名。" << std::endl;
         return;
     }
 
     std::string pwd1, pwd2;
     do {
-        pwd1 = getLineInput("Enter password (cannot be empty): ");
-        pwd2 = getLineInput("Confirm password: ");
+        pwd1 = getLineInput("请输入密码（不能为空）：");
+        pwd2 = getLineInput("请确认密码：");
         if (pwd1 != pwd2) {
-            std::cout << "Passwords do not match. Please try again." << std::endl;
+            std::cout << "密码不一致，请重试。" << std::endl;
         }
     } while (pwd1 != pwd2);
 
     std::string typeChoice;
-    std::cout << "Register as (1) Consumer or (2) Merchant: ";
+    std::cout << "注册类型（1）消费者 或（2）商家：";
     std::getline(std::cin, typeChoice);
 
     std::string accountType;
     if (typeChoice == "1") accountType = "Consumer";
     else if (typeChoice == "2") accountType = "Merchant";
     else {
-        std::cout << "Invalid choice. Registration failed." << std::endl;
+        std::cout << "选择无效，注册失败。" << std::endl;
         return;
     }
 
     if (um.registerUser(uname, pwd1, accountType)) {
-        std::cout << "Registration successful as " << accountType << "!" << std::endl;
+        std::cout << "注册成功，类型为 " << accountType << "！" << std::endl;
     }
     else {
-        std::cout << "Registration failed. Username might be taken or invalid type." << std::endl;
+        std::cout << "注册失败，用户名可能已被占用或类型无效。" << std::endl;
     }
 }
 
 void handleLogin(UserManager& um, User*& currentUser) {
-    std::cout << "\n--- User Login ---" << std::endl;
+    std::cout << "\n--- 用户登录 ---" << std::endl;
     if (currentUser) {
-        std::cout << "Already logged in as " << currentUser->getUsername() << std::endl;
+        std::cout << "已登录，用户：" << currentUser->getUsername() << std::endl;
         return;
     }
-    std::string uname = getLineInput("Enter username: ");
-    std::string pwd = getLineInput("Enter password: ");
+    std::string uname = getLineInput("请输入用户名：");
+    std::string pwd = getLineInput("请输入密码：");
 
     currentUser = um.loginUser(uname, pwd);
     if (currentUser) {
-        std::cout << "Login successful. Welcome, " << currentUser->getUsername() << "!" << std::endl;
+        std::cout << "登录成功，欢迎 " << currentUser->getUsername() << "！" << std::endl;
     }
     else {
-        std::cout << "Login failed. Invalid username or password." << std::endl;
+        std::cout << "登录失败，用户名或密码错误。" << std::endl;
     }
 }
 
 void handleLogout(User*& currentUser, UserManager& um) {
     if (currentUser) {
-        std::cout << "Logging out " << currentUser->getUsername() << "." << std::endl;
+        std::cout << "正在退出 " << currentUser->getUsername() << "。" << std::endl;
         um.persistChanges();
         currentUser = nullptr;
     }
     else {
-        std::cout << "Not logged in." << std::endl;
+        std::cout << "未登录。" << std::endl;
     }
 }
 
 void handleChangePassword(UserManager& um, User* currentUser) {
     if (!currentUser) {
-        std::cout << "You must be logged in to change your password." << std::endl;
+        std::cout << "您必须先登录才能修改密码。" << std::endl;
         return;
     }
-    std::cout << "\n--- Change Password ---" << std::endl;
-    std::string oldPwd = getLineInput("Enter current password: ");
+    std::cout << "\n--- 修改密码 ---" << std::endl;
+    std::string oldPwd = getLineInput("请输入当前密码：");
     if (!currentUser->checkPassword(oldPwd)) {
-        std::cout << "Incorrect current password." << std::endl;
+        std::cout << "当前密码错误。" << std::endl;
         return;
     }
 
     std::string pwd1, pwd2;
     do {
-        pwd1 = getLineInput("Enter new password (cannot be empty): ");
-        pwd2 = getLineInput("Confirm new password: ");
+        pwd1 = getLineInput("请输入新密码（不能为空）：");
+        pwd2 = getLineInput("请确认新密码：");
         if (pwd1 != pwd2) {
-            std::cout << "New passwords do not match. Please try again." << std::endl;
+            std::cout << "新密码不一致，请重试。" << std::endl;
         }
     } while (pwd1 != pwd2);
 
     currentUser->setPassword(pwd1);
     um.persistChanges();
-    std::cout << "Password changed successfully." << std::endl;
+    std::cout << "密码修改成功。" << std::endl;
 }
 
 void handleBalanceManagement(UserManager& um, User* currentUser) {
     if (!currentUser) {
-        std::cout << "You must be logged in to manage balance." << std::endl;
+        std::cout << "您必须先登录才能管理余额。" << std::endl;
         return;
     }
-    std::cout << "\n--- Balance Management ---" << std::endl;
-    std::cout << "Current balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
-    std::cout << "1. Recharge balance" << std::endl;
-    std::cout << "2. View balance (already shown)" << std::endl;
-    // "Consume" part for Task 1 is typically demonstrated by spending.
-    // Since direct purchase is removed for Task 1 as per request,
-    // a generic withdraw option can represent "consume" if needed,
-    // or just recharge and view are sufficient for balance management.
-    // For simplicity, let's keep it to recharge and view.
-    // If "consume" needs to be explicitly shown, a "Withdraw" option could be added.
-    std::cout << "0. Back" << std::endl;
+    std::cout << "\n--- 余额管理 ---" << std::endl;
+    std::cout << "当前余额：$" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
+    std::cout << "1. 充值余额" << std::endl;
+    std::cout << "2. 查看余额（已显示）" << std::endl;
+    // 任务1中通常通过消费展示"Consume"部分。
+    // 根据要求，任务1中移除了直接购买功能，
+    // 因此必要时可以用通用的提现选项代表"消费"，
+    // 或仅保留充值和查看功能即可满足余额管理需求。
+    // 为简化起见，此处仅保留充值和查看功能。
+    // 如需明确展示"消费"，可添加"提现"选项。
+    std::cout << "0. 返回" << std::endl;
 
-    std::string choiceStr = getLineInput("Your choice: ");
+    std::string choiceStr = getLineInput("请选择：");
     int choice = -1;
     try {
         choice = std::stoi(choiceStr);
     }
     catch (const std::exception& e) {
-        std::cout << "Invalid input." << std::endl;
+        std::cout << "输入无效。" << std::endl;
         return;
     }
 
     if (choice == 1) {
-        double amount = getValidatedInput<double>("Enter amount to recharge: $");
+        double amount = getValidatedInput<double>("请输入充值金额：$");
         if (amount <= 0) {
-            std::cout << "Recharge amount must be positive." << std::endl;
+            std::cout << "充值金额必须为正数。" << std::endl;
             return;
         }
         currentUser->deposit(amount);
         um.persistChanges();
-        std::cout << "Recharge successful. New balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
+        std::cout << "充值成功，新余额：$" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
     }
     else if (choice == 0) {
         return;
     }
     else if (choice != 2) {
-        std::cout << "Invalid choice." << std::endl;
+        std::cout << "选择无效。" << std::endl;
     }
 }
-// --- End of User related actions ---
+// --- 用户相关操作结束 ---
 
 
-// --- Product related actions (General) ---
+// --- 商品相关操作（通用） ---
 void displayProducts(const std::vector<Product*>& productList) {
     if (productList.empty()) {
-        std::cout << "No products to display." << std::endl;
+        std::cout << "没有可显示的商品。" << std::endl;
         return;
     }
-    std::cout << "\n--- Available Products ---" << std::endl;
+    std::cout << "\n--- 可用商品 ---" << std::endl;
     for (const auto* product : productList) {
         product->displayDetails();
     }
@@ -206,133 +205,133 @@ void handleDisplayAllProducts(ProductManager& pm) {
 }
 
 void handleSearchProducts(ProductManager& pm) {
-    std::cout << "\n--- Search Products ---" << std::endl;
-    std::cout << "Search by (1) Name, (2) Type, (3) Merchant: ";
+    std::cout << "\n--- 搜索商品 ---" << std::endl;
+    std::cout << "搜索条件（1）名称，（2）类型，（3）商家：";
     std::string choiceStr = getLineInput("");
     int choice = -1;
     try {
         choice = std::stoi(choiceStr);
     }
     catch (const std::exception& e) {
-        std::cout << "Invalid input." << std::endl;
+        std::cout << "输入无效。" << std::endl;
         return;
     }
 
-    std::string searchTerm = getLineInput("Enter search term: ");
+    std::string searchTerm = getLineInput("请输入搜索词：");
     std::string searchBy;
 
     if (choice == 1) searchBy = "name";
     else if (choice == 2) searchBy = "type";
     else if (choice == 3) searchBy = "merchant";
     else {
-        std::cout << "Invalid search criteria." << std::endl;
+        std::cout << "搜索条件无效。" << std::endl;
         return;
     }
 
     std::vector<Product*> results = pm.searchProducts(searchTerm, searchBy);
     if (results.empty()) {
-        std::cout << "No products found matching your criteria." << std::endl;
+        std::cout << "未找到符合条件的商品。" << std::endl;
     }
     else {
-        std::cout << "--- Search Results ---" << std::endl;
+        std::cout << "--- 搜索结果 ---" << std::endl;
         displayProducts(results);
     }
 }
 
-// --- Consumer-Specific Actions ---
-// REMOVED: handlePurchaseProduct function as per request for Task 1 simplification
+// --- 消费者特定操作 ---
+// 根据任务1简化要求，移除了handlePurchaseProduct函数
 /*
 void handlePurchaseProduct(UserManager& um, ProductManager& pm, User* consumerUser) {
-    // ... entire function body removed ...
+    // ... 整个函数体已移除 ...
 }
 */
 
-// --- Merchant-Specific Actions ---
+// --- 商家特定操作 ---
 void handleAddProduct(ProductManager& pm, User* merchantUser) {
     if (!merchantUser || merchantUser->getUserType() != "Merchant") {
-        std::cout << "Error: Must be logged in as a Merchant." << std::endl;
+        std::cout << "错误：必须以商家身份登录。" << std::endl;
         return;
     }
     Merchant* merchant = static_cast<Merchant*>(merchantUser);
 
-    std::cout << "\n--- Add New Product ---" << std::endl;
-    std::string name = getLineInput("Enter product name: ");
-    std::string description = getLineInput("Enter product description: ");
+    std::cout << "\n--- 添加新商品 ---" << std::endl;
+    std::string name = getLineInput("请输入商品名称：");
+    std::string description = getLineInput("请输入商品描述：");
     double originalPrice = -1.0;
     while (originalPrice < 0) {
-        originalPrice = getValidatedInput<double>("Enter product original price: $");
-        if (originalPrice < 0) std::cout << "Price cannot be negative." << std::endl;
+        originalPrice = getValidatedInput<double>("请输入商品原价：$");
+        if (originalPrice < 0) std::cout << "价格不能为负数。" << std::endl;
     }
     int stock = -1;
     while (stock < 0) {
-        stock = getValidatedInput<int>("Enter product stock quantity: ");
-        if (stock < 0) std::cout << "Stock cannot be negative." << std::endl;
+        stock = getValidatedInput<int>("请输入商品库存数量：");
+        if (stock < 0) std::cout << "库存不能为负数。" << std::endl;
     }
 
     std::string productTypeChoice;
-    std::string productType; // This will be "Book", "Food", or "Clothing" for class instantiation
+    std::string productType; // 用于类实例化的"Book"、"Food"或"Clothing"
     while (true) {
-        std::cout << "Select product category for instantiation:\n1. Book\n2. Food\n3. Clothing\nYour choice: ";
+        std::cout << "选择商品分类进行实例化：\n1. 书籍\n2. 食品\n3. 服装\n请选择：";
         std::getline(std::cin, productTypeChoice);
         if (productTypeChoice == "1") { productType = "Book"; break; }
         if (productTypeChoice == "2") { productType = "Food"; break; }
         if (productTypeChoice == "3") { productType = "Clothing"; break; }
-        std::cout << "Invalid choice. Please select 1, 2, or 3 for the base product class." << std::endl;
+        std::cout << "选择无效，请选择1、2或3作为基础商品类别。" << std::endl;
     }
 
-    // Optional: Allow merchant to specify a more detailed type string if desired,
-    // but the C++ class will be one of the above.
-    // For Task 1, productType being "Book", "Food", "Clothing" is sufficient.
+    // 可选：允许商家指定更详细的类型字符串（如有需要），
+    // 但C++类仍为上述三种之一。
+    // 对于任务1，productType为"Book"、"Food"、"Clothing"已足够。
 
     if (pm.addProduct(name, description, originalPrice, stock, merchant->getUsername(), productType)) {
-        std::cout << "Product '" << name << "' added successfully." << std::endl;
-        // Discount application will be handled within pm.addProduct if a rule exists
+        std::cout << "商品'" << name << "'添加成功。" << std::endl;
+        // 折扣应用将在pm.addProduct内部处理（如有规则存在）
     }
     else {
-        std::cout << "Failed to add product." << std::endl;
+        std::cout << "添加商品失败。" << std::endl;
     }
 }
 
 void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     if (!merchantUser || merchantUser->getUserType() != "Merchant") {
-        std::cout << "Error: Must be logged in as a Merchant." << std::endl;
+        std::cout << "错误：必须以商家身份登录。" << std::endl;
         return;
     }
     Merchant* merchant = static_cast<Merchant*>(merchantUser);
 
-    std::cout << "\n--- Manage My Products ---" << std::endl;
+    std::cout << "\n--- 管理我的商品 ---" << std::endl;
     std::vector<Product*> myProducts = pm.getProductsByMerchant(merchant->getUsername());
     if (myProducts.empty()) {
-        std::cout << "You have not added any products yet." << std::endl;
+        std::cout << "您尚未添加任何商品。" << std::endl;
         return;
     }
     displayProducts(myProducts);
 
-    std::string productID = getLineInput("Enter ID of product to manage (or 0 to cancel): ");
+    std::string productID = getLineInput("请输入要管理的商品ID（或0取消）：");
     if (productID == "0") return;
 
     Product* product = pm.findProductByID(productID);
     if (!product || product->getOwnerMerchantUsername() != merchant->getUsername()) {
-        std::cout << "Product ID not found or you do not own this product." << std::endl;
+        std::cout << "商品ID未找到或您不拥有该商品。" << std::endl;
         return;
     }
 
-    std::cout << "\nManaging Product: " << product->getName() << " (ID: " << product->getID() << ")" << std::endl;
-    std::cout << "1. Update Price (Original & Sale)" << std::endl;
-    std::cout << "2. Update Stock" << std::endl;
-    std::cout << "3. Set Discount (Update Sale Price for this specific product)" << std::endl;
-    std::cout << "4. Remove Product" << std::endl;
-    std::cout << "5. Update Description" << std::endl;
-    std::cout << "6. Update Name" << std::endl;
-    std::cout << "0. Back" << std::endl;
+    std::cout << "\n管理商品：" << product->getName() << "（ID：" << product->getID() << "）" << std::endl;
+    std::cout << "1. 更新价格（原价&售价）" << std::endl;
+    std::cout << "2. 更新库存" << std::endl;
+    std::cout << "3. 设置折扣（更新此商品的售价）" << std::endl;
+    std::cout << "4. 删除商品" << std::endl;
+    std::cout << "5. 更新描述" << std::endl;
+    std::cout << "6. 更新名称" << std::endl;
+    std::cout << "0. 返回" << std::endl;
 
-    std::string choiceStr = getLineInput("Your choice: ");
+    std::string choiceStr = getLineInput("请选择：");
     int choice = -1;
     try {
         choice = std::stoi(choiceStr);
     }
     catch (const std::exception& e) {
-        std::cout << "Invalid input." << std::endl;
+        std::cout << "输入无效。" << std::endl;
         return;
     }
 
@@ -341,15 +340,15 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     case 1: {
         double newOrigPrice = -1.0;
         while (newOrigPrice < 0) {
-            newOrigPrice = getValidatedInput<double>("Enter new original price: $");
-            if (newOrigPrice < 0) std::cout << "Price cannot be negative.\n";
+            newOrigPrice = getValidatedInput<double>("请输入新原价：$");
+            if (newOrigPrice < 0) std::cout << "价格不能为负数。\n";
         }
         product->setOriginalPrice(newOrigPrice);
         double newSalePrice = -1.0;
         while (newSalePrice < 0 || newSalePrice > newOrigPrice) {
-            newSalePrice = getValidatedInput<double>("Enter new sale price (cannot exceed original): $");
-            if (newSalePrice < 0) std::cout << "Price cannot be negative.\n";
-            if (newSalePrice > newOrigPrice) std::cout << "Sale price cannot exceed original price.\n";
+            newSalePrice = getValidatedInput<double>("请输入新售价（不能超过原价）：$");
+            if (newSalePrice < 0) std::cout << "价格不能为负数。\n";
+            if (newSalePrice > newOrigPrice) std::cout << "售价不能超过原价。\n";
         }
         product->setCurrentSalePrice(newSalePrice);
         changed = true;
@@ -358,8 +357,8 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     case 2: {
         int newStock = -1;
         while (newStock < 0) {
-            newStock = getValidatedInput<int>("Enter new stock quantity: ");
-            if (newStock < 0) std::cout << "Stock cannot be negative.\n";
+            newStock = getValidatedInput<int>("请输入新库存数量：");
+            if (newStock < 0) std::cout << "库存不能为负数。\n";
         }
         product->setStock(newStock);
         changed = true;
@@ -368,36 +367,36 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     case 3: {
         double discountPercent = -1.0;
         while (discountPercent < 0 || discountPercent > 100) {
-            discountPercent = getValidatedInput<double>("Enter discount percentage for this product (e.g., 10 for 10% off): ");
-            if (discountPercent < 0 || discountPercent > 100) std::cout << "Discount must be between 0 and 100.\n";
+            discountPercent = getValidatedInput<double>("请输入此商品的折扣百分比（如10表示9折）：");
+            if (discountPercent < 0 || discountPercent > 100) std::cout << "折扣必须在0到100之间。\n";
         }
         double newSalePrice = product->getOriginalPrice() * (1.0 - (discountPercent / 100.0));
         product->setCurrentSalePrice(newSalePrice);
-        std::cout << "New sale price for this product set to: $" << std::fixed << std::setprecision(2) << product->getCurrentSalePrice() << std::endl;
+        std::cout << "此商品新售价已设置为：$" << std::fixed << std::setprecision(2) << product->getCurrentSalePrice() << std::endl;
         changed = true;
         break;
     }
     case 4: {
-        std::string confirm = getLineInput("Are you sure you want to remove this product? (y/n): ");
+        std::string confirm = getLineInput("确认删除此商品？（y/n）：");
         if (confirm == "y" || confirm == "Y") {
             if (pm.removeProduct(product->getID(), merchant->getUsername())) {
-                std::cout << "Product removed." << std::endl;
+                std::cout << "商品已删除。" << std::endl;
             }
             else {
-                std::cout << "Failed to remove product." << std::endl;
+                std::cout << "删除商品失败。" << std::endl;
             }
             return;
         }
         break;
     }
     case 5: {
-        std::string newDesc = getLineInput("Enter new description: ");
+        std::string newDesc = getLineInput("请输入新描述：");
         product->setDescription(newDesc);
         changed = true;
         break;
     }
     case 6: {
-        std::string newName = getLineInput("Enter new name: ");
+        std::string newName = getLineInput("请输入新名称：");
         product->setName(newName);
         changed = true;
         break;
@@ -405,28 +404,28 @@ void handleManageMyProducts(ProductManager& pm, User* merchantUser) {
     case 0:
         return;
     default:
-        std::cout << "Invalid choice." << std::endl;
+        std::cout << "选择无效。" << std::endl;
         break;
     }
 
     if (changed) {
         pm.updateProduct(product);
-        std::cout << "Product details updated." << std::endl;
+        std::cout << "商品详情已更新。" << std::endl;
     }
 }
 
 void handleDiscountCategory(ProductManager& pm, User* merchantUser) {
     if (!merchantUser || merchantUser->getUserType() != "Merchant") {
-        std::cout << "Error: Must be logged in as a Merchant." << std::endl;
+        std::cout << "错误：必须以商家身份登录。" << std::endl;
         return;
     }
     Merchant* merchant = static_cast<Merchant*>(merchantUser);
 
-    std::cout << "\n--- Discount Products by Category (for your products) ---" << std::endl;
+    std::cout << "\n--- 按类别设置商品折扣（针对您的商品） ---" << std::endl;
 
     std::vector<Product*> myProducts = pm.getProductsByMerchant(merchant->getUsername());
     if (myProducts.empty()) {
-        std::cout << "You have no products to discount." << std::endl;
+        std::cout << "您没有可设置折扣的商品。" << std::endl;
         return;
     }
 
@@ -434,28 +433,28 @@ void handleDiscountCategory(ProductManager& pm, User* merchantUser) {
     for (const auto* p : myProducts) {
         myTypesSet.insert(p->getProductType());
     }
-    if (myTypesSet.empty() && pm.getAvailableProductTypes().empty()) { // Check both merchant's types and all platform types
-        std::cout << "No product categories found for your products or on the platform." << std::endl;
+    if (myTypesSet.empty() && pm.getAvailableProductTypes().empty()) { // 检查商家类型和平台所有类型
+        std::cout << "未找到您的商品或平台上的商品类别。" << std::endl;
         return;
     }
 
-    std::cout << "Your current product categories: ";
-    if (myTypesSet.empty()) std::cout << "None. ";
+    std::cout << "您当前的商品类别：";
+    if (myTypesSet.empty()) std::cout << "无。 ";
     for (const auto& type : myTypesSet) {
         std::cout << type << " ";
     }
-    std::cout << "\nAll platform categories: ";
+    std::cout << "\n所有平台类别： ";
     std::vector<std::string> allTypes = pm.getAvailableProductTypes();
-    if (allTypes.empty()) std::cout << "None.";
+    if (allTypes.empty()) std::cout << "无。";
     for (const auto& type : allTypes) {
         std::cout << type << " ";
     }
     std::cout << std::endl;
 
 
-    std::string categoryToDiscount = getLineInput("Enter product category (e.g., Book, Food, Clothing) to apply/update discount for: ");
-    // Validate category string (optional, could allow any string for future types)
-    // For now, we expect one of the known types for simplicity, but ProductManager handles any string.
+    std::string categoryToDiscount = getLineInput("请输入要应用/更新折扣的商品类别（如Book、Food、Clothing）： ");
+    // 验证类别字符串（可选，可允许任何字符串用于未来类型）
+    // 为简单起见，此处期望为已知类型之一，但ProductManager可处理任何字符串。
     bool platformHasCategory = false;
     for (const auto& type : allTypes) {
         if (type == categoryToDiscount) {
@@ -463,56 +462,56 @@ void handleDiscountCategory(ProductManager& pm, User* merchantUser) {
             break;
         }
     }
-    // Check if the chosen category is one of the basic ones if you want to be strict.
+    // 如果要严格限制，可检查所选类别是否为基本类别之一。
     if (categoryToDiscount != "Book" && categoryToDiscount != "Food" && categoryToDiscount != "Clothing" && !platformHasCategory) {
-        std::cout << "Warning: '" << categoryToDiscount << "' is not a standard or existing category. "
-            << "You can still set a discount rule for it if you plan to add such products." << std::endl;
+        std::cout << "警告：'" << categoryToDiscount << "'不是标准或现有类别。 "
+            << "如果您计划添加此类商品，仍可为其设置折扣规则。" << std::endl;
     }
 
 
     double discountPercent = -1.0;
     while (discountPercent < 0 || discountPercent > 100) {
-        discountPercent = getValidatedInput<double>("Enter discount percentage (0-100, 0 to remove discount): ");
-        if (discountPercent < 0 || discountPercent > 100) std::cout << "Discount must be between 0 and 100.\n";
+        discountPercent = getValidatedInput<double>("请输入折扣百分比（0-100，0表示移除折扣）： ");
+        if (discountPercent < 0 || discountPercent > 100) std::cout << "折扣必须在0到100之间。\n";
     }
 
-    // Use the new ProductManager method
+    // 使用新的ProductManager方法
     pm.applyCategoryDiscount(merchant->getUsername(), categoryToDiscount, discountPercent);
-    // The pm.applyCategoryDiscount method will print messages and save changes.
-    // No need for pm.persistChanges() here as applyCategoryDiscount calls saveProductsToFile.
+    // pm.applyCategoryDiscount方法将打印消息并保存更改。
+    // 此处无需调用pm.persistChanges()，因为applyCategoryDiscount已调用saveProductsToFile。
 }
 
 
-// --- Menu Functions ---
+// --- 菜单函数 ---
 void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
     std::string choiceStr;
     int choice = -1;
 
     while (true) {
-        std::cout << "\n========= E-commerce Platform =========" << std::endl;
+        std::cout << "\n========= 电子商务平台 =========" << std::endl;
         if (currentUser) {
-            std::cout << "Logged in as: " << currentUser->getUsername()
+            std::cout << "当前登录：" << currentUser->getUsername()
                 << " (" << currentUser->getUserType()
-                << ") | Balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
+                << ") | 余额：$" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
         }
         else {
-            std::cout << "Welcome, Guest!" << std::endl;
+            std::cout << "欢迎，访客！" << std::endl;
         }
         std::cout << "---------------------------------------" << std::endl;
-        std::cout << "1. Display All Products" << std::endl;
-        std::cout << "2. Search Products" << std::endl;
+        std::cout << "1. 显示所有商品" << std::endl;
+        std::cout << "2. 搜索商品" << std::endl;
         if (!currentUser) {
-            std::cout << "3. Register" << std::endl;
-            std::cout << "4. Login" << std::endl;
+            std::cout << "3. 注册" << std::endl;
+            std::cout << "4. 登录" << std::endl;
         }
         else {
-            std::cout << "3. My Account Options" << std::endl;
-            std::cout << "4. Logout" << std::endl;
+            std::cout << "3. 我的账户选项" << std::endl;
+            std::cout << "4. 退出登录" << std::endl;
         }
-        std::cout << "0. Exit" << std::endl;
+        std::cout << "0. 退出" << std::endl;
         std::cout << "---------------------------------------" << std::endl;
 
-        choiceStr = getLineInput("Your choice: ");
+        choiceStr = getLineInput("请选择：");
         try {
             choice = std::stoi(choiceStr);
         }
@@ -539,12 +538,12 @@ void showMainMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
             else handleLogout(currentUser, um);
             break;
         case 0:
-            std::cout << "Exiting platform. Goodbye!" << std::endl;
+            std::cout << "正在退出平台，再见！" << std::endl;
             if (currentUser) um.persistChanges();
             pm.persistChanges();
             return;
         default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
+            std::cout << "选择无效，请重试。" << std::endl;
         }
     }
 }
@@ -554,16 +553,16 @@ void showConsumerMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
     int choice = -1;
 
     while (currentUser && currentUser->getUserType() == "Consumer") {
-        std::cout << "\n--- Consumer Menu (" << currentUser->getUsername() << ") ---" << std::endl;
-        std::cout << "Balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
-        std::cout << "1. View All Products" << std::endl;
-        std::cout << "2. Search Products" << std::endl;
-        // std::cout << "3. Purchase Product" << std::endl; // REMOVED
-        std::cout << "3. Manage Balance" << std::endl;     // Re-numbered
-        std::cout << "4. Change Password" << std::endl;    // Re-numbered
-        std::cout << "0. Back to Main Menu (Logout)" << std::endl;
+        std::cout << "\n--- 消费者菜单 (" << currentUser->getUsername() << ") ---" << std::endl;
+        std::cout << "余额：$" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
+        std::cout << "1. 查看所有商品" << std::endl;
+        std::cout << "2. 搜索商品" << std::endl;
+        // std::cout << "3. 购买商品" << std::endl; // 已移除
+        std::cout << "3. 管理余额" << std::endl;     // 重新编号
+        std::cout << "4. 修改密码" << std::endl;    // 重新编号
+        std::cout << "0. 返回主菜单（退出登录）" << std::endl;
 
-        choiceStr = getLineInput("Your choice: ");
+        choiceStr = getLineInput("请选择：");
         try {
             choice = std::stoi(choiceStr);
         }
@@ -574,14 +573,14 @@ void showConsumerMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
         switch (choice) {
         case 1: handleDisplayAllProducts(pm); break;
         case 2: handleSearchProducts(pm); break;
-            // case 3: handlePurchaseProduct(um, pm, currentUser); break; // REMOVED
-        case 3: handleBalanceManagement(um, currentUser); break; // Now case 3
-        case 4: handleChangePassword(um, currentUser); break;    // Now case 4
+            // case 3: handlePurchaseProduct(um, pm, currentUser); break; // 已移除
+        case 3: handleBalanceManagement(um, currentUser); break; // 现为case 3
+        case 4: handleChangePassword(um, currentUser); break;    // 现为case 4
         case 0:
             handleLogout(currentUser, um);
             return;
         default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
+            std::cout << "选择无效，请重试。" << std::endl;
         }
     }
     if (!currentUser) {
@@ -594,18 +593,18 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
     int choice = -1;
 
     while (currentUser && currentUser->getUserType() == "Merchant") {
-        std::cout << "\n--- Merchant Menu (" << currentUser->getUsername() << ") ---" << std::endl;
-        std::cout << "Balance: $" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
-        std::cout << "1. Add New Product" << std::endl;
-        std::cout << "2. Manage My Products" << std::endl;
-        std::cout << "3. Set/Update Discount by Category (for my products)" << std::endl; // Clarified name
-        std::cout << "4. View All Platform Products" << std::endl;
-        std::cout << "5. Search Platform Products" << std::endl;
-        std::cout << "6. Manage Balance" << std::endl;
-        std::cout << "7. Change Password" << std::endl;
-        std::cout << "0. Back to Main Menu (Logout)" << std::endl;
+        std::cout << "\n--- 商家菜单 (" << currentUser->getUsername() << ") ---" << std::endl;
+        std::cout << "余额：$" << std::fixed << std::setprecision(2) << currentUser->getBalance() << std::endl;
+        std::cout << "1. 添加新商品" << std::endl;
+        std::cout << "2. 管理我的商品" << std::endl;
+        std::cout << "3. 按类别设置/更新折扣（针对我的商品）" << std::endl; // 已澄清名称
+        std::cout << "4. 查看所有平台商品" << std::endl;
+        std::cout << "5. 搜索平台商品" << std::endl;
+        std::cout << "6. 管理余额" << std::endl;
+        std::cout << "7. 修改密码" << std::endl;
+        std::cout << "0. 返回主菜单（退出登录）" << std::endl;
 
-        choiceStr = getLineInput("Your choice: ");
+        choiceStr = getLineInput("请选择：");
         try {
             choice = std::stoi(choiceStr);
         }
@@ -625,7 +624,7 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
             handleLogout(currentUser, um);
             return;
         default:
-            std::cout << "Invalid choice. Please try again." << std::endl;
+            std::cout << "选择无效，请重试。" << std::endl;
         }
     }
     if (!currentUser) {
@@ -634,7 +633,7 @@ void showMerchantMenu(UserManager& um, ProductManager& pm, User*& currentUser) {
 }
 
 
-// --- Main Function ---
+// --- 主函数 ---
 int main() {
     UserManager userManager;
     ProductManager productManager;
@@ -643,14 +642,14 @@ int main() {
 
     showMainMenu(userManager, productManager, currentUser);
 
-    // PersistChanges is called at exit from main menu and on logout.
+    // 在从主菜单退出和登出时会调用PersistChanges。
     return 0;
 }
 
-// Make sure the split function is defined. If it's in UserManager.cpp and not in a common header,
-// you might need to define it again or move it to a utility file and include it.
-// For simplicity, if it's only in UserManager.cpp, you might need to redeclare it here or move its definition.
-// Let's assume it's available (e.g., if UserManager.cpp is compiled and linked, its 'split' is available if not static).
-// To be safe, one could define it in a separate util.h and util.cpp or make it a static helper in main.
-// Given the project structure, having 'extern std::vector<std::string> split(...);' in ProductManager.cpp
-// and relying on UserManager.cpp providing the definition during linking is a common approach.
+// 确保split函数已定义。如果它在UserManager.cpp中且不在公共头文件中，
+// 可能需要在此处重新定义或将其移至实用工具文件并包含它。
+// 为简单起见，如果它仅在UserManager.cpp中，可能需要在此处重新声明或移动其定义。
+// 假设它可用（例如，如果UserManager.cpp已编译并链接，其'split'函数在非静态时可用）。
+// 为安全起见，可以在单独的util.h和util.cpp中定义它，或在main中使其成为静态助手。
+// 鉴于项目结构，在ProductManager.cpp中使用'extern std::vector<std::string> split(...);'
+// 并依赖UserManager.cpp在链接期间提供定义是常见做法。

@@ -1,12 +1,18 @@
-﻿  ProductManager.cpp
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\ProductManager.cpp(24,42): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\ProductManager.cpp(85,45): warning C4101: “oor”: 未引用的局部变量
+﻿  Product.cpp
+  ProductManager.cpp
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\ProductManager.cpp(22,42): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\ProductManager.cpp(83,45): warning C4101: “oor”: 未引用的局部变量
+  User.cpp
+  UserManager.cpp
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\UserManager.cpp(64,49): warning C4101: “ia”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\UserManager.cpp(67,45): warning C4101: “oor”: 未引用的局部变量
   main.cpp
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(892,34): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(941,34): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(1059,34): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(1244,38): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(1295,38): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(1337,38): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(166,34): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(215,34): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(333,34): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(518,38): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(569,38): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\main.cpp(611,38): warning C4101: “e”: 未引用的局部变量
   正在生成代码...
+  LINK : 没有找到 C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\x64\Debug\Ecommmerce.exe 或上一个增量链接没有生成它；正在执行完全链接
   Ecommmerce.vcxproj -> C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommmerce\x64\Debug\Ecommmerce.exe
