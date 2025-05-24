@@ -3,16 +3,44 @@
   "WorkspaceRootPath": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:OrderManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ProductManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:OrderManager.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Product.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:Product.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ProductManager.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ShoppingCart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:ShoppingCart.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:User.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\UserManeger.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:UserManeger.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:utils.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Order.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{A2EBA6D0-A8BC-471F-AEEA-03A1523AD715}|Ecommerce2.vcxproj|solutionrelative:Order.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,32 +50,71 @@
       "DocumentGroups": [
         {
           "DockedHeight": 403,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 10,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ProductManager.h",
-              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h",
-              "RelativeDocumentMoniker": "ProductManager.h",
-              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.h",
-              "RelativeToolTip": "ProductManager.h",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABkAAAAVAAAAAAAAAA==",
+              "Title": "OrderManager.h",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.h",
+              "RelativeDocumentMoniker": "OrderManager.h",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.h",
+              "RelativeToolTip": "OrderManager.h",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-05-23T10:15:01.052Z",
+              "WhenOpened": "2025-05-24T05:52:53.637Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductManager.cpp",
-              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp",
-              "RelativeDocumentMoniker": "ProductManager.cpp",
-              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp",
-              "RelativeToolTip": "ProductManager.cpp",
-              "ViewState": "AgIAAMwAAAAAAAAAAAAkwNsAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 7,
+              "Title": "UserManeger.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\UserManeger.cpp",
+              "RelativeDocumentMoniker": "UserManeger.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\UserManeger.cpp",
+              "RelativeToolTip": "UserManeger.cpp",
+              "ViewState": "AgIAAGUAAAAAAAAAAAAYwIEAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-05-23T09:42:10.068Z",
+              "WhenOpened": "2025-05-24T05:41:35.807Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "utils.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\utils.cpp",
+              "RelativeDocumentMoniker": "utils.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\utils.cpp",
+              "RelativeToolTip": "utils.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:40:11.798Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "User.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\User.cpp",
+              "RelativeDocumentMoniker": "User.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\User.cpp",
+              "RelativeToolTip": "User.cpp",
+              "ViewState": "AgIAAD8AAAAAAAAAAAAYwFsAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:39:37.638Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ShoppingCart.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ShoppingCart.cpp",
+              "RelativeDocumentMoniker": "ShoppingCart.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ShoppingCart.cpp",
+              "RelativeToolTip": "ShoppingCart.cpp",
+              "ViewState": "AgIAAHoAAAAAAAAAAAAYwJYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:38:49.758Z",
               "EditorCaption": ""
             },
             {
@@ -64,13 +131,65 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ProductManager.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp",
+              "RelativeDocumentMoniker": "ProductManager.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\ProductManager.cpp",
+              "RelativeToolTip": "ProductManager.cpp",
+              "ViewState": "AgIAAAoBAAAAAAAAAAAYwDUBAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:38:44.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Product.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Product.cpp",
+              "RelativeDocumentMoniker": "Product.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Product.cpp",
+              "RelativeToolTip": "Product.cpp",
+              "ViewState": "AgIAAIsAAAAAAAAAAAAYwKcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:37:53.808Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderManager.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.cpp",
+              "RelativeDocumentMoniker": "OrderManager.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\OrderManager.cpp",
+              "RelativeToolTip": "OrderManager.cpp",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:37:47.409Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Order.cpp",
+              "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Order.cpp",
+              "RelativeDocumentMoniker": "Order.cpp",
+              "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\Order.cpp",
+              "RelativeToolTip": "Order.cpp",
+              "ViewState": "AgIAACAAAAAAAAAAAAAYwGYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-05-24T05:37:00.27Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
               "Title": "main.cpp",
               "DocumentMoniker": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp",
               "RelativeDocumentMoniker": "main.cpp",
               "ToolTip": "C:\\Users\\COKY\\Documents\\GitHub\\EcommmerceDesign\\Ecommerce2\\main.cpp",
               "RelativeToolTip": "main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAASAAAAAAAAAA==",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAFQCAAA9AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-05-23T09:15:08.011Z",
               "EditorCaption": ""

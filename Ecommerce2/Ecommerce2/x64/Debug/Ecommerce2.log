@@ -1,4 +1,4 @@
-﻿  ProductManager.cpp
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommerce2\ProductManager.cpp(20,42): warning C4101: “e”: 未引用的局部变量
-C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommerce2\ProductManager.cpp(93,45): warning C4101: “oor”: 未引用的局部变量
+﻿  OrderManager.cpp
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommerce2\OrderManager.cpp(31,42): warning C4101: “e”: 未引用的局部变量
+C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommerce2\OrderManager.cpp(132,41): warning C4101: “oor”: 未引用的局部变量
   Ecommerce2.vcxproj -> C:\Users\COKY\Documents\GitHub\EcommmerceDesign\Ecommerce2\x64\Debug\Ecommerce2.exe
